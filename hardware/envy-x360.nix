@@ -14,6 +14,27 @@
   boot.kernelModules = [ "kvm-amd" "evdi" ];
   boot.extraModulePackages = [ ];
 
+  boot.loader.systemd-boot = {
+    editor = false;
+    extraEntries = {
+      "windows.conf" = ''
+      title Microsoft Windows 11
+      efi /EFI/VeraCrypt/DcsBoot.efi
+      '';
+      "ipxe.conf" = ''
+      title iPXE
+      efi /ipxe.efi
+      '';
+    };
+    extraFiles = {
+      "ipxe.efi" = "${pkgs.ipxe}/ipxe.efi";
+    };
+    extraInstallCommands = ''
+    echo "timeout menu-force" | ${pkgs.coreutils}/bin/tee -a /boot/loader/loader.conf
+    echo "auto-entries false" | ${pkgs.coreutils}/bin/tee -a /boot/loader/loader.conf
+    '';
+  };
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
