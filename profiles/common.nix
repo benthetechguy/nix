@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../user-packages.nix ];
   nixpkgs.config.allowUnfree = true;
 
   time.timeZone = "America/New_York";
@@ -56,4 +55,5 @@
     enable = true;
     onBoot = "ignore";
   };
+  users.users.ben.extraGroups = [ "libvirtd" ];
 }
