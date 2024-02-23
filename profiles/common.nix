@@ -22,7 +22,7 @@
   users.defaultUserShell = pkgs.fish;
   users.users.ben = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "libvirtd" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -55,5 +55,4 @@
     enable = true;
     onBoot = "ignore";
   };
-  users.users.ben.extraGroups = [ "libvirtd" ];
 }
