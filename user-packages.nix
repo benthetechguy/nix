@@ -8,7 +8,10 @@
     ungoogled-chromium
     libreoffice-fresh
     remmina
+    vlc
     virt-manager
+    monero-gui
+    handbrake
     discord
     element-desktop
     file

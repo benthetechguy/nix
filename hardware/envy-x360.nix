@@ -4,6 +4,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../snippets/systemd-boot.nix
+    ../snippets/luks.nix
     ../snippets/fstab.nix
     ../snippets/veracrypt-automount.nix
   ];

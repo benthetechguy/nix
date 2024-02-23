@@ -2,18 +2,13 @@
 
 {
 
-  boot.initrd.luks.devices."cryptroot" = {
-    device = "/dev/disk/by-partlabel/Linux";
-    allowDiscards = true;
-  };
-
   fileSystems = {
     "/" = {
-      device = "/dev/mapper/cryptroot";
+      device = "/dev/disk/by-label/Linux";
       fsType = "btrfs";
     };
     "/boot" = {
-      device = "/dev/disk/by-partlabel/ESP";
+      device = "/dev/disk/by-label/ESP";
       fsType = "vfat";
     };
     "/mnt/NAS" = {
