@@ -19,6 +19,7 @@
       variant = "mac";
     };
   };
+  programs.dconf.enable = true;
 
   boot.plymouth = {
     enable = true;

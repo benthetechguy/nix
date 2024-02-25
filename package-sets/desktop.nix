@@ -15,6 +15,7 @@
     discord
     element-desktop
     file
+    corefonts
   ];
 
   programs.firefox = {
