@@ -14,8 +14,14 @@
     handbrake
     discord
     element-desktop
+    prismlauncher
     file
+    htop
+    sshfs
+    screen
+    p7zip
     corefonts
+    android-tools
   ];
 
   programs.firefox = {
