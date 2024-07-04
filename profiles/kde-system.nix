@@ -8,17 +8,17 @@
 
   services.xserver = {
     enable = true;
-    displayManager = {
-      sddm.enable = true;
-      defaultSession = "plasmawayland";
-    };
     desktopManager.plasma5.enable = true;
-    libinput.enable = true;
     xkb = {
       layout = "us";
       variant = "mac";
     };
   };
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "plasmawayland";
+  };
+  services.libinput.enable = true;
   programs.dconf.enable = true;
 
   boot.plymouth = {

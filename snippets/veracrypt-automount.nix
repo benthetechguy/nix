@@ -7,12 +7,11 @@
   in [
     "${builtins.fetchTarball {
       url = "https://github.com/Mic92/sops-nix/archive/${commit}.tar.gz";
-      sha256 = "982d0204de0c45ad827003c5e1733fbdf084307e0d3f0638cc216b756dfe2de7";
+      sha256 = "11vbiaiv51ncz6di4m1wyghcvysya6zhhpfd3v70rp319wi28lyj";
     }}/modules/sops"
   ];
-  sops.defaultSopsFile = ./secrets.yaml;
-  sops.gnupg.home = "/var/lib/sops";
-  sops.gnupg.sshKeyPaths = [];
+  sops.defaultSopsFile = ../secrets.yaml;
+  sops.gnupg.sshKeyPaths = [ "/etc/ssh/idrsa" ];
   sops.secrets.veracrypt_key = {};
 
   fileSystems."/mnt/c" = {
