@@ -17,10 +17,8 @@
   sops.defaultSopsFile = ../secrets.yaml;
   sops.gnupg.sshKeyPaths = [ "/etc/ssh/idrsa" ];
   sops.secrets.nextcloud_admin_pass = {};
-  sops.secrets.cloudflare_bttg_cert = {};
-  sops.secrets.cloudflare_bttg_key = {};
-  sops.secrets.cloudflare_tsc_cert = {};
-  sops.secrets.cloudflare_tsc_key = {};
+  sops.secrets.cloudflare_cert = {};
+  sops.secrets.cloudflare_key = {};
   sops.secrets.nas_pass = {};
   sops.secrets.nas_pass_2 = {};
 
@@ -43,8 +41,8 @@
       "default" = {
         default = true;
         addSSL = true;
-        sslCertificate = "/run/secrets/cloudflare_bttg_cert"
-        sslCertificateKey = "/run/secrets/cloudflare_bttg_key"
+        sslCertificate = "/run/secrets/cloudflare_cert"
+        sslCertificateKey = "/run/secrets/cloudflare_key"
         root = "/var/www/website";
         extraConfig = ''
           autoindex on;
@@ -77,8 +75,8 @@
 
       "apt.benthetechguy.net" = {
         forceSSL = true;
-        sslCertificate = "/run/secrets/cloudflare_bttg_cert"
-        sslCertificateKey = "/run/secrets/cloudflare_bttg_key"
+        sslCertificate = "/run/secrets/cloudflare_cert"
+        sslCertificateKey = "/run/secrets/cloudflare_key"
         root = "/mnt/NAS/mirrors/reprepro";
         locations = {
           "/" = {
@@ -104,39 +102,8 @@
 
       "nextcloud.benthetechguy.net" = {
         forceSSL = true;
-        sslCertificate = "/run/secrets/cloudflare_bttg_cert"
-        sslCertificateKey = "/run/secrets/cloudflare_bttg_key"
-      };
-
-      "www.techsupportcentral.org" = {
-        forceSSL = true;
-        sslCertificate = "/run/secrets/cloudflare_tsc_cert"
-        sslCertificateKey = "/run/secrets/cloudflare_tsc_key"
-        serverAliases = [ "s1.techsupportcentral.org" ];
-        root = "/var/www/tsc";
-        locations = {
-          "/" = {
-            index = "index.html index.php";
-          };
-          "~ \\.php$" {
-            extraConfig = ''
-              fastcgi_pass unix:${config.services.phpfpm.pools.pool.socket};
-              fastcgi_index index.php;
-            '';
-          };
-          "^~ /.git" = {
-            return 403;
-          };
-          "^~ /.github" = {
-            return 403;
-          };
-          "^~ /.gitignore" = {
-            return 403;
-          };
-          "^~ /includes/config.php" = {
-            return 403;
-          };
-        };
+        sslCertificate = "/run/secrets/cloudflare_cert"
+        sslCertificateKey = "/run/secrets/cloudflare_key"
       };
     };
   };
