@@ -15,7 +15,7 @@
     }}/modules/sops"
   ];
   sops.defaultSopsFile = ../secrets.yaml;
-  sops.gnupg.sshKeyPaths = [ "/etc/ssh/idrsa" ];
+  sops.age.keyFile = [ "/var/lib/sops-nix/key.txt" ];
   sops.secrets.nextcloud_admin_pass = {};
   sops.secrets.cloudflare_cert = {};
   sops.secrets.cloudflare_key = {};

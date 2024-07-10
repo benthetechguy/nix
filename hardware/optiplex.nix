@@ -3,9 +3,12 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../snippets/systemd-boot.nix
     ../snippets/fstab.nix
   ];
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/disk/by-id/ata-SanDisk_SSD_G5_BICS4_202363803318";
+  boot.loader.timeout = 10;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

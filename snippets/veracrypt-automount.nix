@@ -11,7 +11,7 @@
     }}/modules/sops"
   ];
   sops.defaultSopsFile = ../secrets.yaml;
-  sops.gnupg.sshKeyPaths = [ "/etc/ssh/idrsa" ];
+  sops.age.keyFile = [ "/var/lib/sops-nix/key.txt" ];
   sops.secrets.veracrypt_key = {};
 
   fileSystems."/mnt/c" = {
